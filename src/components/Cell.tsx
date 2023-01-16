@@ -14,10 +14,11 @@ interface CellProps extends Omit<HTMLProps<HTMLTableCellElement>, "onChange"> {
 type CellState = "input" | "cell";
 
 const CellInput = styled("input")`
-  width: 100%;
-  height: 100%;
+  width: calc(100% - 4px);
+  height: calc(100% - 2px);
   border: none;
   outline: none;
+  margin: 1px 0;
 `;
 const CellElement = styled("td")<{ selected?: boolean }>`
   width: 100px;
