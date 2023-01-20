@@ -18,4 +18,19 @@ const getColumnAlpha = (colNumber: number) => {
   return arr.reverse().join("");
 };
 
-export { CELL_ID_PREFIX, getCellId, getColumnAlpha };
+const isBoundingBorder = ({
+  x,
+  y,
+  boundingRect,
+}: {
+  x: number;
+  y: number;
+  boundingRect: DOMRect;
+}) => ({
+  left: x - boundingRect.left < 5 && x - boundingRect.left >= 0,
+  right: boundingRect.right - x < 5 && boundingRect.right - x > 0,
+  top: y - boundingRect.top < 5 && y - boundingRect.top >= 0,
+  bottom: boundingRect.bottom - y < 5 && boundingRect.bottom - y > 0,
+});
+
+export { CELL_ID_PREFIX, getCellId, getColumnAlpha, isBoundingBorder };

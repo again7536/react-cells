@@ -2,7 +2,7 @@ import { Position, Area } from "@/types";
 
 const getPosition = (id: string) => ({ row: +id.split("-")[3], col: +id.split("-")[4] });
 
-const changeAreaValid = (area: Area, pivot: Position, pos: Position): Area => {
+const changeArea = (area: Area, pivot: Position, pos: Position): Area => {
   const start = { ...area.start };
   const end = { ...area.end };
 
@@ -36,4 +36,4 @@ const isSelected = (position: Position, area: Area) =>
 
 const BASE_POSITION = Object.freeze({ row: 0, col: 0 });
 
-export { BASE_POSITION, getPosition, changeAreaValid, isSelected };
+export { BASE_POSITION, getPosition, changeArea, isSelected };
