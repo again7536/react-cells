@@ -10,7 +10,7 @@ const useMouseOffset = () => {
   const prevCoord = useRef<Coord | null>(null);
 
   return {
-    setMouseOffset: (coord: Coord) => setMouseCoord(coord),
+    calcMouseOffset: (coord: Coord) => setMouseCoord(coord),
     initMouseCoord: (coord: Coord) => {
       prevCoord.current = coord;
     },

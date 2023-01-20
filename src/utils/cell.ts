@@ -1,4 +1,10 @@
-import { Position } from "@/types";
+import { Cursor, MouseState, Position } from "@/types";
+
+interface BoundingParams {
+  x: number;
+  y: number;
+  boundingRect: DOMRect;
+}
 
 const CELL_ID_PREFIX = "--table";
 const ALPHABETS = [..."ABCDEFGHIZKLMNOPQRSTUVWXYZ"];
@@ -33,4 +39,24 @@ const isBoundingBorder = ({
   bottom: boundingRect.bottom - y < 5 && boundingRect.bottom - y > 0,
 });
 
-export { CELL_ID_PREFIX, getCellId, getColumnAlpha, isBoundingBorder };
+const getCursor = (params: BoundingParams): Cursor => {
+  const isBorder = isBoundingBorder(params);
+
+  if (isBorder.left) return "ew-resize";
+  if (isBorder.right) return "ew-resize";
+  if (isBorder.top) return "ns-resize";
+  if (isBorder.bottom) return "ns-resize";
+  return "cell";
+};
+
+const getMouseState = (params: BoundingParams): MouseState => {
+  const isBorder = isBoundingBorder(params);
+
+  if (isBorder.left) return "resize-left";
+  if (isBorder.right) return "resize-right";
+  if (isBorder.top) return "resize-top";
+  if (isBorder.bottom) return "resize-bottom";
+  return "select";
+};
+
+export { CELL_ID_PREFIX, getCellId, getColumnAlpha, isBoundingBorder, getCursor, getMouseState };

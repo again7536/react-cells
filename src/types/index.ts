@@ -10,7 +10,16 @@ interface Area {
 
 interface CellInfo {
   data: unknown;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>, position: Position) => void;
 }
 
-export type { Position, Area, CellInfo };
+type Cursor = "cell" | "ew-resize" | "ns-resize";
+
+type MouseState =
+  | "normal"
+  | "select"
+  | "resize-left"
+  | "resize-bottom"
+  | "resize-right"
+  | "resize-top";
+
+export type { Position, Area, CellInfo, Cursor, MouseState };
